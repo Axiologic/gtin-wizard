@@ -93,6 +93,7 @@ function GtinWizard(server) {
         const transactionId = req.params.transactionId;
         executioner.executioner(path.join(server.rootFolder, gtinWizardStorage, transactionId), (err, seed) => {
             if (err) {
+                console.log(err);
                 res.statusCode = 500;
                 res.end();
                 return;
@@ -110,6 +111,7 @@ function GtinWizard(server) {
         const transactionId = req.params.transactionId;
         serverCommands.setKeySSI(path.join(server.rootFolder, gtinWizardStorage, transactionId), gtinSSI.getIdentifier(), (err) => {
             if (err) {
+                console.log(err);
                 res.statusCode = 500;
             }
 

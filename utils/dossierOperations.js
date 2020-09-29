@@ -12,8 +12,9 @@ function createArchive(templateSSI, callback) {
         templateSSI = keyssi.buildSeedSSI("default");
     }
 
-
-    openDSU.loadApi("resolver").createDSU(templateSSI, callback);
+    const gtin_resolver = require("../../gtin-resolver");
+    templateSSI = gtin_resolver.parseGTIN_SSI(templateSSI);
+    openDSU.loadApi("resolver").createDSU(templateSSI, {useSSIAsIdentifier: true}, callback);
 }
 
 function addFile(workingDir, dossierPath, archive, callback) {
